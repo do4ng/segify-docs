@@ -1777,10 +1777,10 @@ sass@^1.77.8:
     immutable "^4.0.0"
     source-map-js ">=0.6.2 <2.0.0"
 
-segify@^0.0.0-beta.9:
-  version "0.0.0-beta.9"
-  resolved "https://registry.yarnpkg.com/segify/-/segify-0.0.0-beta.9.tgz#18702f2526f0553cdb132dffe40a77cc26343264"
-  integrity sha512-OlLcfRTB5p2f7aLOAV4877F33/TlhzYUwI+erBcijaxD2SGatk8begMo/sk/dW2UyBnWR4x3HJ2nrWb18acvpg==
+segify@^0.0.0-beta.10:
+  version "0.0.0-beta.10"
+  resolved "https://registry.yarnpkg.com/segify/-/segify-0.0.0-beta.10.tgz#b81f2d2672a6c9d7918c5cce34029fe876a33e53"
+  integrity sha512-ybpeIgXGDujO9xQEqDLoNaUD1JOXIsd/S1BQ0bqONCMmw947hiL3AyCVFT0RFtL0U/EaAZqCpC4b8y9LrsogLg==
   dependencies:
     get-tsconfig "^4.7.6"
 

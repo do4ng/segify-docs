@@ -1,5 +1,6 @@
 <script lang="ts" type="text/typescript">
   import { compile } from 'segify';
+  import { version } from '../../node_modules/segify/package.json';
   import { raw } from '../lib.ts';
 
   window.global = {};
@@ -69,11 +70,31 @@
   </div>
   <div class="output">
     <h3>Compiled Output (HTML)</h3>
+    <span>(compiled with: segify@{{ version }})</span>
     <div class="output-html" $mount="htmloutput"></div>
   </div>
 </div>
 
 <style lang="scss">
+  button {
+    background-color: #fff;
+    border: 1px solid #d8d8d8;
+    padding: 10px 7px;
+    border-radius: 3px;
+    margin: 8px 0;
+  }
+  button:hover {
+    background-color: #e6e6e6ab;
+    cursor: pointer;
+  }
+  span {
+    color: #747474;
+    font-size: 12px;
+  }
+  h3 {
+    margin: 0;
+    margin-top: 30px;
+  }
   .container {
     width: 100vw;
     height: 80vh;
