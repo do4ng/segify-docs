@@ -44,7 +44,7 @@
 
   function share() {
     const code = encodeURI(inputMount.value);
-    navigator.clipboard.writeText(`https://segify.vercel.app/repl#${code}`).then(
+    navigator.clipboard.writeText(`https://segify.vercel.app/repl.html#${code}`).then(
       function () {
         alert('Success!');
       },
