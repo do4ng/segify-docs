@@ -16,6 +16,7 @@ export const example$ = `<script>
 `;
 
 export const raw = `// packages/segify/src/client/lib.ts
+// client/lib.mjs version: segify@0.0.0-beta.10
 var $$cc = (t, a, c = []) => {
   a.children = c;
   const component = new t(a);
@@ -28,7 +29,16 @@ var $$ce = (t, a, c = []) => {
     return $$cc(t, a, c);
   const component = document.createElement(t);
   for (const key in a) {
-    component.setAttribute(key, a[key]);
+    if (Array.isArray(a[key])) {
+      let [data, original] = a[key];
+      console.log(data, original, $$DEV_PROPS);
+      for (const att of data) {
+        original = original.replace(att, $$DEV_PROPS[att]());
+      }
+      component.setAttribute(key, original);
+    } else {
+      component.setAttribute(key, a[key]);
+    }
   }
   for (const child of c) {
     Array.isArray(child) && child.forEach((ct) => component.appendChild(ct));
@@ -52,4 +62,5 @@ window.$$$$ = {
   $$cd,
   $$isElement
 };
+
 `;
