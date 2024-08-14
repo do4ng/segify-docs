@@ -8,14 +8,13 @@
   }, 1000);
 
   function onclick() {
-    console.log(`/repl#${example$}`);
-    window.location.href = `/repl#${example$.replace(/\n/g, '\\n')}`;
+    window.location.href = `/repl.html#${example$.replace(/\n/g, '\\n')}`;
   }
   function onclick1() {
-    window.location.href = `/repl#${example1.replace(/\n/g, '\\n')}`;
+    window.location.href = `/repl.html#${example1.replace(/\n/g, '\\n')}`;
   }
   function onclick2() {
-    window.location.href = `/repl#${example2.replace(/\n/g, '\\n')}`;
+    window.location.href = `/repl.html#${example2.replace(/\n/g, '\\n')}`;
   }
 </script>
 
