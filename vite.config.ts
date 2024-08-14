@@ -7,7 +7,19 @@ let index = 0;
 export default defineConfig({
   build: {
     rollupOptions: {
-      input: './index.html',
+      input: {
+        index: './index.html',
+        repl: './repl.html',
+      },
+      external: [
+        'fs',
+        'path',
+        'node:fs',
+        'node:path',
+        'node:url',
+        'node:module',
+        'typescript',
+      ],
     },
   },
   base: './',
@@ -18,7 +30,9 @@ export default defineConfig({
       async transform(code, id, options) {
         if (!id.endsWith('.seg')) return;
 
-        global.segify_asset = './node_modules/segify/client/lib.mjs';
+        global.segify_asset_raw = readFileSync(
+          './node_modules/segify/client/lib.mjs'
+        ).toString();
         code = readFileSync(id).toString();
         const compiled = await compile(code);
 
