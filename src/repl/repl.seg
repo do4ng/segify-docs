@@ -20,7 +20,7 @@
       $.code = $.code.slice(0, -'export { Component, Component as default}'.length);
 
       const outputelements = new Function(
-        `${$.code};const c = new Component({});return c.$$components()`
+        `${$.code};const c = new Component({});c.$$events();return c.$$components()`
       )();
 
       htmloutput.innerHTML = '';
