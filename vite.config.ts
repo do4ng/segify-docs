@@ -1,8 +1,5 @@
 import { defineConfig } from 'vite';
-import { compile } from 'segify';
-import { readFileSync } from 'fs';
-
-let index = 0;
+import { Segify } from 'vite-plugin-segify';
 
 export default defineConfig({
   build: {
@@ -18,26 +15,12 @@ export default defineConfig({
         'node:path',
         'node:url',
         'node:module',
+        'module',
         'typescript',
       ],
     },
   },
   base: './',
 
-  plugins: [
-    {
-      name: 'segify',
-      async transform(code, id, options) {
-        if (!id.endsWith('.seg')) return;
-
-        code = readFileSync(id).toString();
-        const compiled = await compile(code);
-
-        return {
-          code: compiled,
-          map: null,
-        };
-      },
-    },
-  ],
+  plugins: [Segify()],
 });

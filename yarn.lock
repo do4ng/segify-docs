@@ -2022,6 +2022,11 @@ uri-js@^4.2.2:
   dependencies:
     punycode "^2.1.0"
 
+vite-plugin-segify@^0.0.0:
+  version "0.0.0"
+  resolved "https://registry.yarnpkg.com/vite-plugin-segify/-/vite-plugin-segify-0.0.0.tgz#04c6a6a74ac29cba8b9167ee77cd9c0cb9425ea5"
+  integrity sha512-0FdoZwYMmBnismKe3xTuVXVPNDsOy0A2KiFLOyM9HWHs4Z9InodhWBGlcXVDc8n6kR7unqK31TW5XX1QJMIMLw==
+
 vite@^5.4.0:
   version "5.4.0"
   resolved "https://registry.yarnpkg.com/vite/-/vite-5.4.0.tgz#11dca8a961369ba8b5cae42d068c7ad684d5370f"
