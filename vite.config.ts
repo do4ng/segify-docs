@@ -30,9 +30,6 @@ export default defineConfig({
       async transform(code, id, options) {
         if (!id.endsWith('.seg')) return;
 
-        global.segify_asset_raw = readFileSync(
-          './node_modules/segify/client/lib.mjs'
-        ).toString();
         code = readFileSync(id).toString();
         const compiled = await compile(code);
 
