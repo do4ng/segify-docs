@@ -50,7 +50,7 @@
         alert('Success!');
       },
       function (err) {
-        console.error('Async: Could not copy text: ', err);
+        console.error('Could not copy text: ', err);
       }
     );
   }
@@ -64,14 +64,16 @@
     <div>
       <div class="button">
         <button $onclick="onCompile">Compile!</button>
-        <button $onclick="share">Copy to clipboard!</button>
+        <button $onclick="share">Copy link to clipboard!</button>
       </div>
     </div>
   </div>
   <div class="output">
     <h3>Compiled Output (HTML)</h3>
-    <span>(compiled with: segify@{{ version }})</span>
-    <div class="output-html" $mount="htmloutput"></div>
+    <span>(compiled with: segify@{{ @const version }})</span>
+    <div class="output-html" $mount="htmloutput">
+      Click the compile button to run code...
+    </div>
   </div>
 </div>
 
