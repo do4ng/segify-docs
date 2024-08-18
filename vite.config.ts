@@ -22,5 +22,13 @@ export default defineConfig({
   },
   base: './',
 
-  plugins: [Segify()],
+  plugins: [
+    Segify({
+      asset: {
+        raw: undefined,
+        location: undefined,
+      },
+      extension: '.seg',
+    }),
+  ],
 });

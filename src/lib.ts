@@ -9,6 +9,22 @@ export const example2 = `<script>let message = "Hello World"</script>
 <div>{{@const message}}</div>
 `;
 
+export const example3 = `<script>
+  function onClick() {
+    alert("Button clicked!");
+  }
+</script>
+<button $onclick="onClick">Click Me!</button>
+`;
+export const example4 = `<script>
+  let mount = null;
+  function onMount() {
+    mount.innerHTML = "Hello World!";
+  }
+</script>
+<div $mount="mount" $onmount="onMount"></div>
+`;
+
 export const example$ = `<script>
   $.count = 0;
   setInterval(() => {

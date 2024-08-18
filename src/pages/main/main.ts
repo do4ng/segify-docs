@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-named-as-default
-import Component from './main/component.seg';
+import Component from './component.seg';
 
 const component = new Component({});
 

@@ -1,0 +1,10 @@
+<script>
+  console.log($);
+
+  function onclick() {
+    console.log('click', $.code);
+    window.location.href = `/repl#${encodeURI($.code)}`;
+  }
+</script>
+
+<button $onclick="onclick">Try on repl</button>

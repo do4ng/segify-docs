@@ -1,5 +1,5 @@
 <script lang="ts" type="text/typescript">
-  import { example1, example2, example$ } from '../lib';
+  import { example1, example2, example3, example4, example$ } from '../../lib';
   import Try from './tryon.seg';
 
   $.count = 0;
@@ -7,14 +7,8 @@
     $.count += 1;
   }, 1000);
 
-  function onclick() {
-    window.location.href = `/repl.html#${example$.replace(/\n/g, '\\n')}`;
-  }
-  function onclick1() {
-    window.location.href = `/repl.html#${example1.replace(/\n/g, '\\n')}`;
-  }
-  function onclick2() {
-    window.location.href = `/repl.html#${example2.replace(/\n/g, '\\n')}`;
+  function onClick() {
+    alert('Button clicked!');
   }
 </script>
 
@@ -38,7 +32,7 @@
   <pre>
     <code>{{@const example$}}</code>
   </pre>
-  <button $onclick="onclick">Try on repl!</button>
+  <Try code="{{ example$ }}"></Try>
 
   <div class="result">
     <p>{{ $.count }}</p>
@@ -52,7 +46,7 @@
   <pre>
     <code>{{@const example1}}</code>
   </pre>
-  <button $onclick="onclick1">Try on repl!</button>
+  <Try code="{{ example1 }}"></Try>
 
   <li>Output (.html)</li>
 
@@ -67,7 +61,7 @@
   <pre>
     <code>{{@const example2}}</code>
   </pre>
-  <button $onclick="onclick2">Try on repl!</button>
+  <Try code="{{ example2 }}"></Try>
 
   <div class="tip">
     <h4>TIP</h4>
@@ -82,4 +76,30 @@
   <div class="result">
     <div>Hello World</div>
   </div>
+
+  <h3>Example 3 - Events (onclick)</h3>
+
+  <li>Input (.html)</li>
+
+  <pre>
+    <code>{{@const example3}}</code>
+  </pre>
+  <Try code="{{ example3 }}"></Try>
+
+  <li>Output (.html)</li>
+
+  <div class="result"><button $onclick="onClick">Click Me!</button></div>
+
+  <h3>Example 3 - Events (mount)</h3>
+
+  <li>Input (.html)</li>
+
+  <pre>
+    <code>{{@const example4}}</code>
+  </pre>
+  <Try code="{{ example4 }}"></Try>
+
+  <li>Output (.html)</li>
+
+  <div class="result">Hello World!</div>
 </div>

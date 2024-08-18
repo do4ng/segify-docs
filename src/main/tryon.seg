@@ -1,8 +1,0 @@
-<script>
-  function onclick() {
-    console.log('click');
-    window.location.href = `/repl#${$.code}`;
-  }
-</script>
-
-<button $onclick="onclick">Try on repl!</button>

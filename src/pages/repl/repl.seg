@@ -1,10 +1,6 @@
 <script lang="ts" type="text/typescript">
-  import { compile } from 'segify';
-  import { version } from '../../node_modules/segify/package.json';
-  import { raw } from '../lib.ts';
-
-  window.global = {};
-  window.global.segify_asset_raw = raw;
+  import { compile, serverRender } from 'segify';
+  import { version } from '../../../node_modules/segify/package.json';
 
   let htmloutput = null;
   let inputMount = null;
@@ -14,24 +10,38 @@
   async function onCompile() {
     htmloutput.innerHTML = 'Compiling...';
 
+    if (document.getElementById('ssr').checked) {
+      window.process = {
+        env: {},
+      };
+      $.code = (await serverRender(inputMount.value)).output
+        .map((a) => a.getText())
+        .join('');
+      htmloutput.innerHTML = $.code;
+      return;
+    }
+
     try {
       $.code = await compile(inputMount.value, { disableProcessor: true });
 
       // remove export
       $.code = $.code.slice(0, -'export { Component, Component as default}'.length);
 
+      console.log($.code);
+
       const outputelements = new Function(
-        `${$.code};const c = new Component({});var cc = c.$$components();c.$$events();return cc`
+        `${$.code};const c = new Component({});var cc = c.$$components();c.$$event();return cc`
       )();
 
       htmloutput.innerHTML = '';
-      console.log($.code);
 
       for (const element of outputelements) {
         htmloutput.appendChild(element);
       }
     } catch (e) {
       htmloutput.innerHTML = `<span style="color: red;">${e}</span>`;
+      console.log(e);
+      throw new Error(e);
     }
   }
 
@@ -60,9 +70,15 @@
   <div class="input">
     <div class="area-wrapper">
       <textarea $mount="inputMount" $onmount="onMount"></textarea>
+
+      <div>
+        <input type="checkbox" id="ssr" name="ssr" />
+        <label for="ssr">SSR</label>
+      </div>
     </div>
     <div>
       <div class="button">
+        <span>Check the console to see the compiled javascript results. </span>
         <button $onclick="onCompile">Compile!</button>
         <button $onclick="share">Copy link to clipboard!</button>
       </div>
@@ -70,7 +86,7 @@
   </div>
   <div class="output">
     <h3>Compiled Output (HTML)</h3>
-    <span>(compiled with: segify@{{ @const version }})</span>
+    <span>(compiled with: segify@{{ @const version }})</span> <br />
     <div class="output-html" $mount="htmloutput">
       Click the compile button to run code...
     </div>
@@ -78,14 +94,15 @@
 </div>
 
 <style lang="scss">
-  button {
+  .input button {
     background-color: #fff;
     border: 1px solid #d8d8d8;
     padding: 10px 7px;
     border-radius: 3px;
+    transition: all 0.1s ease;
     margin: 8px 0;
   }
-  button:hover {
+  .input button:hover {
     background-color: #e6e6e6ab;
     cursor: pointer;
   }
@@ -109,6 +126,7 @@
     .button {
       width: 80%;
       margin: 25px auto;
+      text-align: center;
       button {
         width: 100%;
       }
