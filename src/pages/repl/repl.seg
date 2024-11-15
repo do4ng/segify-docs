@@ -14,9 +14,12 @@
       window.process = {
         env: {},
       };
+
       $.code = (await serverRender(inputMount.value)).output
         .map((a) => a.getText())
         .join('');
+      console.log($.code);
+
       htmloutput.innerHTML = $.code;
       return;
     }
@@ -88,7 +91,7 @@
     <h3>Compiled Output (HTML)</h3>
     <span>(compiled with: segify@{{ @const version }})</span> <br />
     <div class="output-html" $mount="htmloutput">
-      Click the compile button to run code...
+      Click the compile button to run code
     </div>
   </div>
 </div>

@@ -3,7 +3,7 @@
 
   function onclick() {
     console.log('click', $.code);
-    window.location.href = `/repl#${encodeURI($.code)}`;
+    window.location.href = `/repl.html#${encodeURI($.code)}`;
   }
 </script>
 
